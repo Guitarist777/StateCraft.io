@@ -157,7 +157,7 @@
                 </div>
 
                 <!-- UPDATED FORM TAG -->
-                <form id="support-form" action="https://formspree.io/f/YOUR_UNIQUE_ID" method="POST" class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 space-y-6">
+                <form id="support-form" action="https://formspree.io/f/xnnzldon" method="POST" class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 space-y-6">
                     <div>
                         <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Your Name</label>
                         <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500">
