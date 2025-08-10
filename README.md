@@ -135,17 +135,6 @@
             </div>
         </section>
 
-        <!-- Testimonial Section -->
-        <section class="py-20 bg-white dark:bg-gray-800">
-            <div class="container mx-auto px-6">
-                <div class="max-w-3xl mx-auto text-center">
-                    <i data-feather="message-circle" class="w-12 h-12 text-blue-500 mx-auto mb-6"></i>
-                    <p class="text-2xl font-medium text-gray-900 dark:text-white">"StateCraft has completely changed how I approach my to-do list. I no longer feel guilty about not tackling big projects when I'm tired. It's the first productivity app that actually reduced my stress."</p>
-                    <p class="mt-6 text-lg font-semibold text-gray-700 dark:text-gray-300">- Alex Johnson, Designer</p>
-                </div>
-            </div>
-        </section>
-
         <!-- Final CTA Section -->
         <section id="download" class="py-24">
             <div class="container mx-auto px-6 text-center">
