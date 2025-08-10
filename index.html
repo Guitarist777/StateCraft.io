@@ -156,7 +156,6 @@
                     <p class="text-lg text-gray-600 dark:text-gray-400 mb-10">Have a question or feedback? We'd love to hear from you.</p>
                 </div>
 
-                <!-- UPDATED FORM TAG -->
                 <form id="support-form" action="https://formspree.io/f/xnnzldon" method="POST" class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 space-y-6">
                     <div>
                         <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Your Name</label>
@@ -174,7 +173,60 @@
                         Send Message
                     </button>
                 </form>
-                <!-- This success message is no longer needed as Formspree provides its own -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Privacy Policy Section (Initially Hidden) -->
+    <section id="privacy-section" class="hidden-section pt-32 pb-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
+                <h1 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Privacy Policy for StateCraft</h1>
+                <p class="text-gray-600 dark:text-gray-400 mb-4"><strong>Effective Date:</strong> August 9, 2025</p>
+                <div class="space-y-6 text-gray-700 dark:text-gray-300">
+                    <p>Thank you for using StateCraft. Your privacy is a top priority for us. This Privacy Policy explains how we handle your information when you use our mobile application.</p>
+                    <p class="font-bold">The short version is simple: We do not collect, store, or share any of your personal data.</p>
+                    
+                    <div>
+                        <h2 class="text-2xl font-semibold mb-3 text-gray-900 dark:text-white">Information We Do Not Collect</h2>
+                        <p>StateCraft is designed from the ground up to be a private, personal tool. We do not collect any personal information from you. This includes, but is not limited to:</p>
+                        <ul class="list-disc list-inside mt-2 space-y-1">
+                            <li>Your name, email address, or other contact information.</li>
+                            <li>Your location data.</li>
+                            <li>Your device's unique identifiers.</li>
+                            <li>Any usage data or analytics about how you use the app.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-semibold mb-3 text-gray-900 dark:text-white">How Your Data is Handled</h2>
+                        <p>All the data you create in StateCraft is stored exclusively on your own device. This includes:</p>
+                        <ul class="list-disc list-inside mt-2 space-y-1">
+                            <li>The names and details of your tasks.</li>
+                            <li>The custom states you create, including their names, colors, icons, and keywords.</li>
+                            <li>Your theme and display preferences.</li>
+                        </ul>
+                        <p class="mt-2">This information never leaves your device and is never transmitted to us or any third party. Because we do not have access to your data, we cannot use it, share it, or sell it.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-semibold mb-3 text-gray-900 dark:text-white">Children’s Privacy</h2>
+                        <p>Our app does not address anyone under the age of 13. We do not knowingly collect any personally identifiable information from children.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-semibold mb-3 text-gray-900 dark:text-white">Changes to This Privacy Policy</h2>
+                        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-semibold mb-3 text-gray-900 dark:text-white">Contact Us</h2>
+                        <p>If you have any questions about this Privacy Policy, you can contact us through the support form on our website.</p>
+                    </div>
+                </div>
+                <button id="back-to-home" class="mt-8 w-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-bold py-3 rounded-xl">
+                    Back to Home
+                </button>
             </div>
         </div>
     </section>
@@ -182,7 +234,7 @@
     <!-- Footer -->
     <footer class="border-t border-gray-200 dark:border-gray-800">
         <div class="container mx-auto px-6 py-8 text-center text-gray-500 dark:text-gray-400">
-            <p>&copy; 2025 StateCraft. All rights reserved.</p>
+            <p>&copy; 2025 StateCraft. All rights reserved. <a href="#" id="privacy-link" class="hover:text-blue-500">Privacy Policy</a></p>
         </div>
     </footer>
 
@@ -192,32 +244,31 @@
         // --- Page Navigation Logic ---
         const mainContent = document.getElementById('main-content');
         const supportSection = document.getElementById('support-section');
+        const privacySection = document.getElementById('privacy-section');
         const supportLink = document.getElementById('support-link');
+        const privacyLink = document.getElementById('privacy-link');
         const homeLink = document.getElementById('home-link');
+        const backToHomeBtn = document.getElementById('back-to-home');
 
-        const showSupportPage = () => {
+        const showSection = (sectionToShow) => {
             mainContent.classList.add('hidden-section');
-            supportSection.classList.remove('hidden-section');
+            supportSection.classList.add('hidden-section');
+            privacySection.classList.add('hidden-section');
+            sectionToShow.classList.remove('hidden-section');
             window.scrollTo(0, 0);
         };
 
         const showHomePage = () => {
             supportSection.classList.add('hidden-section');
+            privacySection.classList.add('hidden-section');
             mainContent.classList.remove('hidden-section');
         };
 
-        supportLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            showSupportPage();
-        });
+        supportLink.addEventListener('click', (e) => { e.preventDefault(); showSection(supportSection); });
+        privacyLink.addEventListener('click', (e) => { e.preventDefault(); showSection(privacySection); });
+        homeLink.addEventListener('click', (e) => { e.preventDefault(); showHomePage(); });
+        backToHomeBtn.addEventListener('click', (e) => { e.preventDefault(); showHomePage(); });
         
-        homeLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            showHomePage();
-        });
-
-        // REMOVED: The custom form submission logic is no longer needed.
-
         // --- Theme toggle logic ---
         const themeToggle = document.getElementById('theme-toggle');
         const sunIcon = `<i data-feather="sun" class="w-5 h-5 text-gray-600 dark:text-gray-300"></i>`;
