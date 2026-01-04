@@ -1,247 +1,252 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StateCraft - The Mindful Task Manager</title>
+    <title>StateCraft | Tune Your State of Mind</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-text {
-            background: linear-gradient(to right, #4A90E2, #A855F7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        :root {
+            --bg-dark: #060608;
+            --blue-glow: #3b82f6;
+            --teal-glow: #2dd4bf;
         }
-        .dark .gradient-text {
-            background: linear-gradient(to right, #63b3ed, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-dark); 
+            color: #fff;
+            overflow-x: hidden;
         }
-        /* Style to hide sections */
-        .hidden-section {
-            display: none;
+        .serif { font-family: 'Fraunces', serif; }
+
+        /* Atmospheric Background */
+        .ambient-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            filter: blur(120px);
+            opacity: 0.35;
         }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            animation: drift 25s infinite alternate ease-in-out;
+        }
+        @keyframes drift {
+            from { transform: translate(-10%, -10%) scale(1); }
+            to { transform: translate(15%, 15%) scale(1.2); }
+        }
+
+        /* The Glass Aesthetic */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 48px;
+        }
+
+        .cta-button {
+            background: #fff;
+            color: #000;
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+        }
+        .cta-button:hover {
+            background: var(--blue-glow);
+            color: #fff;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+            color: rgba(255,255,255,0.4);
+            cursor: pointer;
+        }
+        .nav-link:hover { color: #fff; }
+
+        .hidden-section { display: none; }
     </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 antialiased">
+<body class="antialiased">
 
-    <!-- Header -->
-    <header class="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm z-50 border-b border-gray-200 dark:border-gray-800">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" id="home-link" class="flex items-center space-x-3 cursor-pointer">
-                <i data-feather="brain" class="w-8 h-8 text-blue-500"></i>
-                <span class="text-2xl font-bold text-gray-900 dark:text-white">StateCraft</span>
-            </a>
-            <div class="flex items-center space-x-4">
-                 <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-                    <i data-feather="moon" class="w-5 h-5 text-gray-600 dark:text-gray-300"></i>
-                </button>
-                <a href="#" id="support-link" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 font-semibold">Support</a>
-                <a href="#download" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105">Download</a>
+    <div class="ambient-glow">
+        <div class="blob w-[600px] h-[600px] bg-blue-600 top-[-20%] left-[-10%]"></div>
+        <div class="blob w-[500px] h-[500px] bg-teal-500 bottom-[0%] right-[-10%]" style="animation-delay: -7s;"></div>
+    </div>
+
+    <header class="py-10 px-6 sticky top-0 z-50 backdrop-blur-md bg-black/10">
+        <div class="container mx-auto flex justify-between items-center">
+            <div onclick="toggleSection('main')" class="flex items-center space-x-4 group cursor-pointer">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 to-teal-400 flex items-center justify-center">
+                    <i data-feather="wind" class="text-white w-5 h-5"></i>
+                </div>
+                <span class="serif text-2xl font-black italic tracking-tighter">StateCraft</span>
             </div>
+            
+            <nav class="hidden md:flex items-center space-x-12 text-[11px] font-bold uppercase tracking-[0.2em]">
+                <span onclick="toggleSection('philosophy')" class="nav-link">Philosophy</span>
+                <span onclick="toggleSection('support')" class="nav-link">Support</span>
+                <a href="https://apps.apple.com/us/app/statecraft/id6749559568" target="_blank" class="cta-button px-8 py-3 rounded-full text-black">Download App</a>
+            </nav>
         </div>
     </header>
 
     <main id="main-content">
-        <!-- Hero Section -->
-        <section class="pt-32 pb-20 text-center">
-            <div class="container mx-auto px-6">
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 text-gray-900 dark:text-white leading-tight">
-                    Stop Fighting Your Brain.
+        <section class="py-24 md:py-40 text-center px-6">
+            <div class="max-w-5xl mx-auto">
+                <h1 class="serif text-7xl md:text-[9rem] font-black leading-[0.85] tracking-tighter mb-10">
+                    Tune your <br>
+                    <span class="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300">state of mind.</span>
                 </h1>
-                <h2 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight">
-                    <span class="gradient-text">Find Your Flow.</span>
-                </h2>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-400 mb-10">
-                    StateCraft is a new kind of task manager that works with your natural energy levels. Match your tasks to your state of mind, prevent burnout, and feel good about what you accomplish.
+                
+                <p class="text-xl md:text-2xl text-white/50 max-w-2xl mx-auto font-light leading-relaxed mb-12 italic">
+                    Stop fighting your energy. I built StateCraft to help you align your focus with your natural rhythms. High-fidelity productivity, designed for you.
                 </p>
-                <a href="#download" class="bg-blue-500 hover:bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg transition-transform transform hover:scale-105 inline-block">
-                    Download for iOS
-                </a>
-                <div class="mt-16">
-                    <img src="https://i.imgur.com/rF9cDXY.png" alt="StateCraft App Screenshot" class="max-w-4xl mx-auto rounded-2xl shadow-2xl border-4 border-gray-200 dark:border-gray-700">
-                </div>
-            </div>
-        </section>
 
-        <!-- How It Works Section -->
-        <section class="py-20 bg-white dark:bg-gray-800">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 dark:text-white">A New Way to Work</h2>
-                    <p class="text-lg text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">Productivity isn't about forcing yourself to do more. It's about doing the right thing at the right time.</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-12 text-center">
-                    <div class="flex flex-col items-center">
-                        <div class="bg-blue-100 dark:bg-blue-900/50 p-5 rounded-full mb-6">
-                            <i data-feather="sliders" class="w-10 h-10 text-blue-500"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold mb-3 text-gray-900 dark:text-white">1. Define Your States</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Create custom states of mind like 'Deep Focus', 'Creative', or 'Low Energy' that reflect your personal rhythms.</p>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div class="bg-purple-100 dark:bg-purple-900/50 p-5 rounded-full mb-6">
-                            <i data-feather="plus-square" class="w-10 h-10 text-purple-500"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold mb-3 text-gray-900 dark:text-white">2. Add Your Tasks</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Add tasks as they come to mind. Our smart AI will suggest the right state for each one based on keywords you define.</p>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div class="bg-green-100 dark:bg-green-900/50 p-5 rounded-full mb-6">
-                            <i data-feather="zap" class="w-10 h-10 text-green-500"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold mb-3 text-gray-900 dark:text-white">3. Match Your Energy</h3>
-                        <p class="text-gray-600 dark:text-gray-400">When you're ready to work, simply pick your current state of mind. StateCraft shows you only the tasks you can accomplish.</p>
+                <div class="flex flex-col items-center space-y-6">
+                    <a href="https://apps.apple.com/us/app/statecraft/id6749559568" target="_blank" class="cta-button px-14 py-6 rounded-3xl text-sm font-bold uppercase tracking-widest">
+                        Start Your Flow
+                    </a>
+                    <div class="flex items-center space-x-3 text-[10px] text-blue-400/50 uppercase tracking-[0.2em] font-semibold">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+                        <span>Designed for clarity in Virginia</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Features Section -->
-        <section class="py-20">
-            <div class="container mx-auto px-6">
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
-                    <div class="space-y-8">
-                        <div class="flex items-start space-x-6">
-                            <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-xl"><i data-feather="edit" class="w-7 h-7 text-blue-500"></i></div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Fully Customizable</h3>
-                                <p class="text-gray-600 dark:text-gray-400 mt-1">Create, edit, and reorder your states with custom names, colors, and icons. Make the app truly yours.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-6">
-                            <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-xl"><i data-feather="cpu" class="w-7 h-7 text-purple-500"></i></div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Dynamic AI</h3>
-                                <p class="text-gray-600 dark:text-gray-400 mt-1">Teach the AI which keywords belong to each state. The more you use it, the smarter it gets.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-6">
-                            <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-xl"><i data-feather="lock" class="w-7 h-7 text-green-500"></i></div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">100% Private</h3>
-                                <p class="text-gray-600 dark:text-gray-400 mt-1">Your data is yours alone. All your tasks and states are stored securely on your device and never sent to the cloud.</p>
-                            </div>
-                        </div>
+        <section class="py-20 px-6">
+            <div class="container mx-auto glass-card overflow-hidden">
+                <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
+                    <div class="p-16 space-y-8 hover:bg-white/[0.02] transition-colors">
+                        <i data-feather="sun" class="text-blue-400 w-6 h-6"></i>
+                        <h3 class="serif text-4xl italic">Alignment</h3>
+                        <p class="text-white/40 leading-relaxed font-light">Match your work to your internal resonance. Deep focus for high-energy; gentle tasks for the ebb.</p>
                     </div>
-                    <div>
-                        <img src="https://i.imgur.com/1gxZDci.png" alt="Feature Screenshot" class="rounded-2xl shadow-xl border-4 border-gray-200 dark:border-gray-700">
+
+                    <div class="p-16 space-y-8 bg-white/[0.01] hover:bg-white/[0.03] transition-colors">
+                        <i data-feather="feather" class="text-teal-400 w-6 h-6"></i>
+                        <h3 class="serif text-4xl italic">Intuition</h3>
+                        <p class="text-white/40 leading-relaxed font-light">I've built pattern recognition that learns your style, moving your thoughts to the right state automatically.</p>
+                    </div>
+
+                    <div class="p-16 space-y-8 hover:bg-white/[0.02] transition-colors">
+                        <i data-feather="shield" class="text-blue-300 w-6 h-6"></i>
+                        <h3 class="serif text-4xl italic">Sanctum</h3>
+                        <p class="text-white/40 leading-relaxed font-light">Your mind is private. Your data is stored 100% on-device, encrypted and entirely within your control.</p>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Final CTA Section -->
-        <section id="download" class="py-24">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">Ready to Find Your Flow?</h2>
-                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mt-4 mb-8 max-w-2xl mx-auto">Download StateCraft from the App Store and discover a calmer, more effective way to be productive.</p>
-                <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg transition-transform transform hover:scale-105 inline-block">
-                    Get StateCraft for iOS
-                </a>
             </div>
         </section>
     </main>
 
-    <!-- Support Section (Initially Hidden) -->
-    <section id="support-section" class="hidden-section pt-32 pb-20">
-        <div class="container mx-auto px-6">
-            <div class="max-w-2xl mx-auto">
-                <div class="text-center">
-                    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white">Contact Support</h1>
-                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-10">Have a question or feedback? We'd love to hear from you.</p>
-                </div>
+    <section id="philosophy-section" class="hidden-section py-20 px-6">
+        <div class="max-w-4xl mx-auto space-y-32">
+            <div class="text-center space-y-8">
+                <h2 class="serif text-6xl md:text-8xl italic">The Architecture of Flow</h2>
+                <p class="text-white/40 text-xl font-light max-w-2xl mx-auto italic">
+                    Productivity isn't a measurement of time. It's a measurement of harmony.
+                </p>
+            </div>
 
-                <!-- UPDATED FORM TAG -->
-                <form id="support-form" action="https://formspree.io/f/xnnzldon" method="POST" class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 space-y-6">
-                    <div>
-                        <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Your Name</label>
-                        <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="space-y-6">
+                    <span class="text-blue-400 font-bold text-[10px] uppercase tracking-[0.4em]">Principle 01</span>
+                    <h3 class="serif text-5xl">Resonance over Deadlines.</h3>
+                    <p class="text-white/50 leading-relaxed font-light">
+                        The clock is an arbitrary judge. Real work happens when the task matches your internal frequency. I don't ask when it's due; I ask how you feel.
+                    </p>
+                </div>
+                <div class="glass-card p-12 flex justify-center border-blue-500/20">
+                    <i data-feather="activity" class="text-blue-500 w-24 h-24 opacity-50"></i>
+                </div>
+            </div>
+
+            <div class="py-12">
+                <h3 class="serif text-3xl italic text-center mb-12">Tuning the Signal</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="glass-card p-8 border-white/5 text-center">
+                        <div class="text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-4">High Signal</div>
+                        <h4 class="serif text-2xl mb-2 italic">Deep Focus</h4>
+                        <p class="text-white/30 text-xs font-light leading-relaxed">For the complex. Writing code, mastering a track, or strategic mapping.</p>
                     </div>
-                    <div>
-                        <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Your Email</label>
-                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    <div class="glass-card p-8 border-white/5 text-center">
+                        <div class="text-teal-400 text-[10px] font-bold uppercase tracking-widest mb-4">Mid Signal</div>
+                        <h4 class="serif text-2xl mb-2 italic">Creative Flow</h4>
+                        <p class="text-white/30 text-xs font-light leading-relaxed">For the fluid. Brainstorming, sketching, and exploring new paths.</p>
                     </div>
-                    <div>
-                        <label for="message" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Message</label>
-                        <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    <div class="glass-card p-8 border-white/5 text-center">
+                        <div class="text-blue-200 text-[10px] font-bold uppercase tracking-widest mb-4">Low Signal</div>
+                        <h4 class="serif text-2xl mb-2 italic">Gentle Admin</h4>
+                        <p class="text-white/30 text-xs font-light leading-relaxed">For the quiet. Organizing notes, clearing mail, and light logistics.</p>
                     </div>
-                    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold text-lg py-3 rounded-xl shadow-lg transition-transform transform hover:scale-105">
-                        Send Message
-                    </button>
-                </form>
-                <!-- This success message is no longer needed as Formspree provides its own -->
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="md:order-2 space-y-6">
+                    <span class="text-teal-400 font-bold text-[10px] uppercase tracking-[0.4em]">Principle 02</span>
+                    <h3 class="serif text-5xl">Signal vs Noise.</h3>
+                    <p class="text-white/50 leading-relaxed font-light">
+                        Complexity is the enemy of focus. I believe in the low-pass filter: stripping away the cloud-syncing and the clutter to leave only the clear signal of your intent.
+                    </p>
+                </div>
+                <div class="glass-card p-12 flex justify-center border-teal-500/20 md:order-1">
+                    <i data-feather="filter" class="text-teal-400 w-24 h-24 opacity-50"></i>
+                </div>
+            </div>
+
+            <div class="glass-card p-20 text-center space-y-8">
+                <h3 class="serif text-4xl italic">"The most productive state is a calm one."</h3>
+                <p class="text-white/30 font-light">I built StateCraft in Virginia to solve a simple problem: how to be effective without burning out. It is a tool for the focused few.</p>
+                <button onclick="toggleSection('main')" class="text-blue-400 hover:text-white transition-colors uppercase tracking-[0.4em] text-[10px] font-bold">Back to the present</button>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-gray-200 dark:border-gray-800">
-        <div class="container mx-auto px-6 py-8 text-center text-gray-500 dark:text-gray-400">
-            <p>&copy; 2025 StateCraft. All rights reserved.</p>
+    <section id="support-section" class="hidden-section py-32 px-6">
+        <div class="max-w-3xl mx-auto glass-card p-12 md:p-20 text-center">
+            <h2 class="serif text-5xl italic mb-6 text-white">How can I help?</h2>
+            <p class="text-white/50 mb-12 font-light italic">Whether it's feedback or a note on your flow, I'd love to hear from you.</p>
+            
+            <form action="https://formspree.io/f/xnnzldon" method="POST" class="space-y-6 text-left">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" name="name" placeholder="Your Name" class="bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-blue-500/50 transition-all w-full text-white">
+                    <input type="email" name="email" placeholder="Email Address" class="bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-blue-500/50 transition-all w-full text-white">
+                </div>
+                <textarea name="message" rows="5" placeholder="Your Message..." class="bg-white/5 border border-white/10 rounded-3xl px-6 py-4 outline-none focus:border-blue-500/50 transition-all w-full text-white"></textarea>
+                <button type="submit" class="cta-button w-full py-5 rounded-2xl font-bold uppercase tracking-widest text-sm">Send Message</button>
+            </form>
+            
+            <button onclick="toggleSection('main')" class="mt-12 text-[10px] uppercase tracking-[0.4em] text-white/20 hover:text-white transition-colors">Return to Calm</button>
         </div>
+    </section>
+
+    <footer class="py-20 text-center">
+        <div class="serif text-2xl italic text-white/20 mb-8">Crafted for clarity.</div>
+        <div class="text-[10px] font-bold uppercase tracking-[0.6em] text-white/10">© 2026 StateCraft • Handcrafted in Virginia by Jessica</div>
     </footer>
 
     <script>
         feather.replace();
 
-        // --- Page Navigation Logic ---
-        const mainContent = document.getElementById('main-content');
-        const supportSection = document.getElementById('support-section');
-        const supportLink = document.getElementById('support-link');
-        const homeLink = document.getElementById('home-link');
-
-        const showSupportPage = () => {
-            mainContent.classList.add('hidden-section');
-            supportSection.classList.remove('hidden-section');
-            window.scrollTo(0, 0);
+        const sections = {
+            main: document.getElementById('main-content'),
+            support: document.getElementById('support-section'),
+            philosophy: document.getElementById('philosophy-section')
         };
 
-        const showHomePage = () => {
-            supportSection.classList.add('hidden-section');
-            mainContent.classList.remove('hidden-section');
-        };
-
-        supportLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            showSupportPage();
-        });
-        
-        homeLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            showHomePage();
-        });
-
-        // REMOVED: The custom form submission logic is no longer needed.
-
-        // --- Theme toggle logic ---
-        const themeToggle = document.getElementById('theme-toggle');
-        const sunIcon = `<i data-feather="sun" class="w-5 h-5 text-gray-600 dark:text-gray-300"></i>`;
-        const moonIcon = `<i data-feather="moon" class="w-5 h-5 text-gray-600 dark:text-gray-300"></i>`;
-
-        const applyTheme = (theme) => {
-            if (theme === 'dark') {
-                document.documentElement.classList.add('dark');
-                themeToggle.innerHTML = sunIcon;
-            } else {
-                document.documentElement.classList.remove('dark');
-                themeToggle.innerHTML = moonIcon;
-            }
-            feather.replace();
-        };
-
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        applyTheme(currentTheme);
-
-        themeToggle.addEventListener('click', () => {
-            const newTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-            localStorage.setItem('theme', newTheme);
-            applyTheme(newTheme);
-        });
+        function toggleSection(target) {
+            // Hide all
+            Object.values(sections).forEach(s => s.classList.add('hidden-section'));
+            // Show target
+            sections[target].classList.remove('hidden-section');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
