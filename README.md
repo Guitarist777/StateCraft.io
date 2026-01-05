@@ -11,12 +11,5 @@ StateCraft is designed to help users align their productivity with their natural
 - **Typography:** Fraunces (Serif) & Inter (Sans)
 - **Forms:** [Formspree](https://formspree.io/)
 - **Architecture:** Single Page Application (SPA)
-
-## Deployment
-This site is optimized for GitHub Pages. 
-1. Push the code to a repository.
-2. Enable GitHub Pages in the repository settings.
-3. Ensure `index.html` and `privacy.html` are in the root directory.
-
 ---
 *Single-handedly crafted by Jessica in Virginia.*
