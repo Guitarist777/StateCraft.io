@@ -3,7 +3,7 @@
 The official support and philosophy page for **StateCraft**, a mindful task manager for iOS.
 
 ## Project Vision
-StateCraft is designed to help users align their productivity with their natural energy levels. This site reflects the "Liquid Studio" aesthetic—blending high-end audio engineering precision with mindful, fluid design.
+StateCraft is designed to help users align their productivity with their natural energy levels. 
 
 ## Tech Stack
 - **Framework:** [Tailwind CSS](https://tailwindcss.com/)
